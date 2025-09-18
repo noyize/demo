@@ -7,5 +7,6 @@ data class PortfolioUiState(
     val isLoading: Boolean = false,
     val userHoldings: List<HoldingUiModel> = emptyList(),
     val portfolioSummary: PortfolioSummary? = null,
-    val error: String? = null
+    val error: String? = null,
+    val isSummaryExpanded: Boolean = false
 )

@@ -8,7 +8,6 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,7 +21,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -30,14 +28,12 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.noyal.demo.ui.component.ErrorPlaceHolder
 import com.noyal.demo.ui.portfolio.component.Holding
 import com.noyal.demo.ui.portfolio.component.SummaryBar
 import com.noyal.demo.ui.portfolio.model.HoldingUiModel
@@ -47,22 +43,25 @@ fun PortfolioScreen(
     viewModel: PortfolioViewModel
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    PortfolioContent(uiState = uiState)
-
+    PortfolioContent(
+        uiState = uiState,
+        onToggleSummary = viewModel::toggleSummary,
+        onRetry = viewModel::retry
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PortfolioContent(
     modifier: Modifier = Modifier,
-    uiState: PortfolioUiState
+    uiState: PortfolioUiState,
+    onToggleSummary: () -> Unit = {},
+    onRetry: () -> Unit = {},
 ) {
-    var isExpanded by remember { mutableStateOf(false) }
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = { TopBar(topAppBarScrollBehavior =scrollBehavior) },
+        topBar = { TopBar(topAppBarScrollBehavior = scrollBehavior) },
         bottomBar = {
             AnimatedVisibility(
                 visible = uiState.portfolioSummary != null,
@@ -76,8 +75,8 @@ private fun PortfolioContent(
                         todayProfitAndLoss = summary.todayPnl,
                         totalProfitAndLoss = summary.totalPnl,
                         totalProfitAndLossPercentage = summary.totalPnlPercentage,
-                        isExpanded = isExpanded,
-                        onExpand = { isExpanded = it }
+                        isExpanded = uiState.isSummaryExpanded,
+                        onExpand = { onToggleSummary() }
                     )
                 }
             }
@@ -87,16 +86,11 @@ private fun PortfolioContent(
             modifier = Modifier.padding(innerPadding),
             targetState = uiState.isLoading || uiState.error != null
         ) { isBusy ->
-            if (isBusy) {
-                when {
-                    uiState.isLoading -> Loading()
-                    uiState.error != null -> {}
-                }
-            } else {
-                HoldingList(holdings = uiState.userHoldings)
-            }
+            if (isBusy) when {
+                uiState.isLoading -> Loading()
+                uiState.error != null -> ErrorPlaceHolder { onRetry() }
+            } else HoldingList(holdings = uiState.userHoldings)
         }
-
     }
 }
 

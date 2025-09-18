@@ -16,6 +16,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.noyal.demo.ui.component.ComingSoonPlaceHolder
 import com.noyal.demo.ui.portfolio.PortfolioScreen
 
 @Composable
@@ -41,7 +42,7 @@ fun MainNavigationFlow(rootNavController: NavHostController) {
         bottomBar = {
             BottomNavigationBar(navController = mainNavController)
         },
-        contentWindowInsets = WindowInsets(0,0,0,0)
+        contentWindowInsets = WindowInsets(0, 0, 0, 0)
     ) { paddingValues ->
         NavHost(
             modifier = Modifier.padding(paddingValues),
@@ -50,7 +51,7 @@ fun MainNavigationFlow(rootNavController: NavHostController) {
             enterTransition = {
                 scaleIn(
                     animationSpec = spring(
-                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        dampingRatio = Spring.DampingRatioLowBouncy,
                         stiffness = Spring.StiffnessLow
                     ),
                     initialScale = 0.92f
@@ -62,7 +63,7 @@ fun MainNavigationFlow(rootNavController: NavHostController) {
             popEnterTransition = {
                 scaleIn(
                     animationSpec = spring(
-                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        dampingRatio = Spring.DampingRatioLowBouncy,
                         stiffness = Spring.StiffnessLow
                     ),
                     initialScale = 0.92f
@@ -72,17 +73,17 @@ fun MainNavigationFlow(rootNavController: NavHostController) {
                 fadeOut(animationSpec = tween(150))
             }
         ) {
-            composable<Screen.Watchlist> {}
+            composable<Screen.Watchlist> { ComingSoonPlaceHolder() }
 
-            composable<Screen.Orders> {}
+            composable<Screen.Orders> { ComingSoonPlaceHolder() }
 
             composable<Screen.Portfolio> {
                 PortfolioScreen(hiltViewModel())
             }
 
-            composable<Screen.Funds> {}
+            composable<Screen.Funds> { ComingSoonPlaceHolder() }
 
-            composable<Screen.Invest> {}
+            composable<Screen.Invest> { ComingSoonPlaceHolder() }
 
         }
     }

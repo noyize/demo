@@ -27,6 +27,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,6 +35,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.noyal.demo.ui.portfolio.component.Holding
@@ -49,16 +51,18 @@ fun PortfolioScreen(
 
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PortfolioContent(
     modifier: Modifier = Modifier,
     uiState: PortfolioUiState
 ) {
     var isExpanded by remember { mutableStateOf(false) }
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
     Scaffold(
-        modifier = modifier,
-        topBar = { TopBar() },
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = { TopBar(topAppBarScrollBehavior =scrollBehavior) },
         bottomBar = {
             AnimatedVisibility(
                 visible = uiState.portfolioSummary != null,
@@ -124,6 +128,7 @@ private fun Loading(modifier: Modifier = Modifier) {
 @Composable
 private fun TopBar(
     modifier: Modifier = Modifier,
+    topAppBarScrollBehavior: TopAppBarScrollBehavior,
     onProfileClick: () -> Unit = {},
     onSortClick: () -> Unit = {},
     onSearchClick: () -> Unit = {},
@@ -131,12 +136,7 @@ private fun TopBar(
     ) {
     TopAppBar(
         modifier = modifier,
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
-            actionIconContentColor = MaterialTheme.colorScheme.onPrimary,
-            titleContentColor = MaterialTheme.colorScheme.onPrimary
-        ),
+        scrollBehavior = topAppBarScrollBehavior,
         title = {
             Text("")
         },

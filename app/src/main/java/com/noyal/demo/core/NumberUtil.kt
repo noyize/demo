@@ -7,11 +7,17 @@ import kotlin.math.pow
 import kotlin.math.round
 
 fun Double.toCurrency(): String {
+    return when {
+        this == 0.0 -> "₹0"
+        this < 0 -> "-₹${formatCurrencyAmount(-this)}"
+        else -> "₹${formatCurrencyAmount(this)}"
+    }
+}
+
+private fun formatCurrencyAmount(amount: Double): String {
     val locale = Locale.Builder().setLanguage("en").setRegion("IN").build()
-    val symbols = DecimalFormatSymbols(locale)
-    val formatter = DecimalFormat("¤#,##0.##", symbols)
-    formatter.currency = java.util.Currency.getInstance("INR")
-    return formatter.format(this)
+    val formatter = DecimalFormat("#,##0.##", DecimalFormatSymbols(locale))
+    return formatter.format(amount)
 }
 
 fun Double.roundToDecimalPlaces(decimalPlaces: Int): Double {

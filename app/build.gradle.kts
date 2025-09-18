@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.icons.extended)
 
     // Hilt
     implementation(libs.hilt.android)
@@ -65,6 +66,12 @@ dependencies {
 
     // Network
     implementation(libs.bundles.network)
+
+    // Compose Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    // Hilt Navigation Compose
+    implementation(libs.androidx.hilt.navigation.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

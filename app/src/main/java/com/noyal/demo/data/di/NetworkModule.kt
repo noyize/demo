@@ -1,6 +1,7 @@
 package com.noyal.demo.data.di
 
 import com.noyal.demo.BuildConfig
+import com.noyal.demo.data.remote.RemoteApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -67,6 +68,12 @@ object NetworkModule {
             .client(okHttpClient)
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRemoteApiService(retrofit: Retrofit): RemoteApiService {
+        return retrofit.create(RemoteApiService::class.java)
     }
 
 }

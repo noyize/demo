@@ -1,8 +1,10 @@
 ## 📹 Demo
 
 ### App in Action
-> 🎬 **Screen Recording Placeholder**
-> *Screen recording here showing the app's key features: loading holdings, expanding/collapsing summary, smooth animations, and error handling*
+
+> 🎬 **Screen Recording**
+> *Screen recording here showing the app's key features: loading holdings, expanding/collapsing
+summary, smooth animations, and error handling*
 <table>
   <tr>
     <td>
@@ -65,23 +67,27 @@ app/
 ## 🛠️ Tech Stack
 
 ### Core Android
+
 - **Kotlin** - Primary programming language
 - **Jetpack Compose** - Modern declarative UI toolkit
 - **Android SDK 36** - Target and compile SDK
 - **Minimum SDK 31** - Supporting modern Android features
 
 ### Architecture & DI
+
 - **Hilt** - Dependency injection framework
 - **ViewModel** - UI-related data holder, lifecycle aware
 - **StateFlow** - Reactive state management
 - **Coroutines** - Asynchronous programming
 
 ### Networking
+
 - **Retrofit** - HTTP client for API communication
 - **OkHttp** - HTTP/HTTP2 client with interceptors
 - **Kotlinx Serialization** - JSON serialization/deserialization
 
 ### UI & Navigation
+
 - **Jetpack Compose** - Ensuring compatible Compose versions
 - **Material 3** - Material Design 3 components
 - **Material Icons Extended** - Comprehensive icon set
@@ -89,6 +95,7 @@ app/
 - **Hilt Navigation Compose** - ViewModel injection in navigation
 
 ### Testing
+
 - **JUnit 4** - Unit testing framework
 - **Mockito** - Mocking framework for tests
 - **Espresso** - UI testing framework
@@ -97,6 +104,7 @@ app/
 ## 🔧 Build Configuration
 
 ### Gradle Configuration
+
 - **Kotlin DSL**: Modern Gradle build scripts
 - **Version Catalogs**: Centralized dependency management in `libs.versions.toml`
 - **KSP**: Kotlin Symbol Processing for annotation processing
@@ -112,6 +120,7 @@ Comprehensive testing strategy:
 - **Instrumented Tests**: Not yet added
 
 Run tests:
+
 ```bash
 ./gradlew test                   
 ```
@@ -119,6 +128,7 @@ Run tests:
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Android Studio Hedgehog or later
 - JDK 17
 - Android SDK 36

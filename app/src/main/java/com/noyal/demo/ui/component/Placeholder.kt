@@ -106,7 +106,7 @@ fun ErrorPlaceHolder(
         text = message ?: "A small hiccup, give it another go?",
         imageVector = Icons.Filled.HourglassTop,
         action = {
-            Button(onClick = {retry()}) {
+            Button(onClick = { retry() }) {
                 Text("Retry")
             }
         }

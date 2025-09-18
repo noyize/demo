@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface RemoteApiService {
     @GET("")
-    suspend fun getUserHoldings(): Response<List<UserHoldingResponse>>
+    suspend fun getUserHoldings(): Response<UserHoldingResponse>
 }

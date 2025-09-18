@@ -6,6 +6,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -40,6 +41,7 @@ fun MainNavigationFlow(rootNavController: NavHostController) {
         bottomBar = {
             BottomNavigationBar(navController = mainNavController)
         },
+        contentWindowInsets = WindowInsets(0,0,0,0)
     ) { paddingValues ->
         NavHost(
             modifier = Modifier.padding(paddingValues),

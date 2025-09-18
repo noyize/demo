@@ -113,7 +113,7 @@ fun SummaryBar(
                     }
                 }
 
-                val totalValueColor = remember(totalProfitAndLoss) {
+                val pnlColor = remember(totalProfitAndLoss) {
                     if (todayProfitAndLoss > 0) green600
                     else if (todayProfitAndLoss < 0) red600
                     else grey600
@@ -122,7 +122,7 @@ fun SummaryBar(
                 ValueRow(
                     title = "Profit & Loss*",
                     value = totalProfitAndLoss.toCurrency(),
-                    valueColor = totalValueColor,
+                    valueColor = pnlColor,
                     titleTrailing = {
                         val rotationAngle by animateFloatAsState(
                             targetValue = if (isExpanded) 180f else 0f,
@@ -135,6 +135,14 @@ fun SummaryBar(
                             modifier = Modifier
                                 .size(20.dp)
                                 .rotate(rotationAngle)
+                        )
+                    },
+                    valueTrailing = {
+                        Text(
+                            modifier = Modifier.padding(start = 4.dp),
+                            text = "($totalProfitAndLossPercentage%)",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = pnlColor
                         )
                     }
                 )

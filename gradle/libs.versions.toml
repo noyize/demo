@@ -11,6 +11,7 @@ composeBom = "2025.09.00"
 hilt = "2.57.1"
 ksp = "2.2.20-2.0.3"
 materialIconsExtended = "1.7.8"
+mockitoCore = "5.19.0"
 retrofit = "3.0.0"
 okhttp = "5.1.0"
 kotlinxSerialization = "1.9.0"
@@ -23,6 +24,7 @@ androidx-compose-material-icons-extended = { module = "androidx.compose.material
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }

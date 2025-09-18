@@ -1,15 +1,30 @@
 ## 📹 Demo
 
 ### App in Action
-> 🎬 **Screen Recording Placeholder**  
-> *Add a screen recording here showing the app's key features: loading holdings, expanding/collapsing summary, smooth animations, and error handling*
+> 🎬 **Screen Recording Placeholder**
+> *Screen recording here showing the app's key features: loading holdings, expanding/collapsing summary, smooth animations, and error handling*
+<table>
+  <tr>
+    <td>
+      <video src="https://github.com/user-attachments/assets/abd882b8-0d7c-40f2-8fbe-95aeb7630664" 
+             autoplay muted loop width="300"></video>
+    </td>
+    <td>
+      <video src="https://github.com/user-attachments/assets/bcf32b14-df33-48c8-9539-db6d89a3cc2d" 
+             autoplay muted loop width="300"></video>
+    </td>
+  </tr>
+</table>
 
 ### Screenshots
 
-<div align="center">
-  <img src="https://via.placeholder.com/300x600/1976D2/FFFFFF?text=Portfolio+Screen" alt="Portfolio Screen" width="250"/>
-  <img src="https://via.placeholder.com/300x600/388E3C/FFFFFF?text=Expanded+Summary" alt="Expanded Summary" width="250"/>
-  <img src="https://via.placeholder.com/300x600/F57C00/FFFFFF?text=Loading+State" alt="Loading State" width="250"/>
+<div>
+  <img src="https://github.com/user-attachments/assets/ba12641f-4694-41f4-9e07-3e414d977d75" 
+       alt="Screenshot 1" width="250"/>
+  <img src="https://github.com/user-attachments/assets/9d8a9d01-c18a-4b18-ab03-2371ec68e0a0" 
+       alt="Screenshot 2" width="250"/>
+    <img src="https://github.com/user-attachments/assets/71f67f0a-9bad-4f1c-aebd-72fa927db090" 
+       alt="Screenshot 3" width="250"/>
 </div>
 
 > - *Main portfolio screen with holdings list*

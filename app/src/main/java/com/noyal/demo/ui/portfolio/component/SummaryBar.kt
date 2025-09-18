@@ -49,6 +49,7 @@ fun SummaryBar(
     totalInvestment: Double,
     todayProfitAndLoss: Double,
     totalProfitAndLoss: Double,
+    totalProfitAndLossPercentage: Double,
     isExpanded: Boolean,
     shape: Shape = RoundedCornerShape(
         topStart = 16.dp,
@@ -204,6 +205,7 @@ private fun SummaryBarPreview() {
             totalInvestment = 429239.23,
             todayProfitAndLoss = 29239.23,
             totalProfitAndLoss = 839239.23,
+            totalProfitAndLossPercentage = 2.23,
             isExpanded = isExpanded,
             onExpand = {
                 isExpanded = it

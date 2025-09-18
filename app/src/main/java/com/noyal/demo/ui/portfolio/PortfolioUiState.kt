@@ -1,7 +1,7 @@
 package com.noyal.demo.ui.portfolio
 
+import com.noyal.demo.domain.model.PortfolioSummary
 import com.noyal.demo.ui.portfolio.model.HoldingUiModel
-import com.noyal.demo.ui.portfolio.model.PortfolioSummary
 
 data class PortfolioUiState(
     val isLoading: Boolean = false,

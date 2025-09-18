@@ -56,12 +56,11 @@ private fun PortfolioContent(
                     SummaryBar(
                         currentValue = summary.currentValue,
                         totalInvestment = summary.totalInvestment,
-                        todayProfitAndLoss = summary.todayProfitAndLoss,
-                        totalProfitAndLoss = summary.todayProfitAndLoss,
+                        todayProfitAndLoss = summary.todayPnl,
+                        totalProfitAndLoss = summary.totalPnl,
+                        totalProfitAndLossPercentage = summary.totalPnlPercentage,
                         isExpanded = isExpanded,
-                        onExpand = {
-                            isExpanded = it
-                        }
+                        onExpand = { isExpanded = it }
                     )
                 }
             }

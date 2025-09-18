@@ -9,6 +9,7 @@ inline fun <reified R, T> safeCall(
     crossinline call: suspend () -> Response<T>,
     noinline mapper: ((T) -> R)? = null
 ): Flow<Result<R>> = flow {
+    emit(Result.Loading)
     try {
         val response = call()
         if (response.isSuccessful) {

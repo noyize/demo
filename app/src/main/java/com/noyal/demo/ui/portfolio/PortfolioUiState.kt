@@ -1,9 +1,9 @@
 package com.noyal.demo.ui.portfolio
 
-import com.noyal.demo.domain.model.UserHolding
+import com.noyal.demo.ui.portfolio.model.HoldingUiModel
 
 data class PortfolioUiState(
     val isLoading: Boolean = false,
-    val userHoldings: List<UserHolding> = emptyList(),
+    val userHoldings: List<HoldingUiModel> = emptyList(),
     val error: String? = null
 )

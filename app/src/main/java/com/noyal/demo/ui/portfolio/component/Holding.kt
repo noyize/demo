@@ -15,12 +15,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.noyal.demo.core.toCurrency
+import com.noyal.demo.ui.theme.green600
+import com.noyal.demo.ui.theme.grey600
+import com.noyal.demo.ui.theme.red600
 
 @Composable
 fun Holding(
@@ -92,9 +96,9 @@ fun QuantityRow(
         )
 
         val valueColor = remember(profitAndLose) {
-            if (profitAndLose > 0) Color(0xFF00796B)
-            else if (profitAndLose < 0) Color(0xFFE53935)
-            else Color(0xFF546E7A)
+            if (profitAndLose > 0) green600
+            else if (profitAndLose < 0) red600
+            else grey600
         }
 
         ValueText(
@@ -111,10 +115,10 @@ private fun ValueText(
     title: String,
     value: String,
     titleColor: Color = MaterialTheme.colorScheme.onSurface.copy(0.7f),
-    valueColor: Color = MaterialTheme.colorScheme.onSurface
+    valueColor: Color = MaterialTheme.colorScheme.onSurface,
+    titleStyle: TextStyle = MaterialTheme.typography.bodySmall,
+    bodyStyle: TextStyle = MaterialTheme.typography.bodyLarge
 ) {
-    val titleStyle = MaterialTheme.typography.bodySmall
-    val bodyStyle = MaterialTheme.typography.bodyLarge
 
     val text = remember(value) {
         buildAnnotatedString {

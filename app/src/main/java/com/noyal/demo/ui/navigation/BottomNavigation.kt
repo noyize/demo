@@ -41,7 +41,10 @@ fun BottomNavigationBar(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    NavigationBar(modifier = modifier) {
+    NavigationBar(
+        modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.surfaceContainerHighest
+    ) {
         bottomNavItems.forEach { item ->
             val isSelected = currentRoute == item.screen::class.qualifiedName
 

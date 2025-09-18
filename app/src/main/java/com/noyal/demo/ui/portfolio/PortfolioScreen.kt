@@ -1,6 +1,11 @@
 package com.noyal.demo.ui.portfolio
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,12 +17,15 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.noyal.demo.domain.model.UserHolding
 import com.noyal.demo.ui.portfolio.component.Holding
+import com.noyal.demo.ui.portfolio.component.SummaryBar
 import com.noyal.demo.ui.portfolio.model.HoldingUiModel
 
 @Composable
@@ -34,7 +42,30 @@ private fun PortfolioContent(
     modifier: Modifier = Modifier,
     uiState: PortfolioUiState
 ) {
-    Scaffold(modifier = modifier) { innerPadding ->
+    var isExpanded by remember { mutableStateOf(false) }
+
+    Scaffold(
+        modifier = modifier,
+        bottomBar = {
+            AnimatedVisibility(
+                visible = uiState.portfolioSummary != null,
+                enter = slideInVertically { it } + fadeIn(),
+                exit = slideOutVertically { it } + fadeOut()
+            ) {
+                uiState.portfolioSummary?.let { summary ->
+                    SummaryBar(
+                        currentValue = summary.currentValue,
+                        totalInvestment = summary.totalInvestment,
+                        todayProfitAndLoss = summary.todayProfitAndLoss,
+                        totalProfitAndLoss = summary.todayProfitAndLoss,
+                        isExpanded = isExpanded,
+                        onExpand = {
+                            isExpanded = it
+                        }
+                    )
+                }
+            }
+        }) { innerPadding ->
         Crossfade(
             modifier = Modifier.padding(innerPadding),
             targetState = uiState.isLoading || uiState.error != null

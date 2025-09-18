@@ -50,6 +50,7 @@ class PortfolioViewModel @Inject constructor(
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
+                                portfolioSummary = null,
                                 error = "Something went wrong, please try again."
                             )
                         }
